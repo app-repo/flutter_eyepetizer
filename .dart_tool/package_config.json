@@ -38,10 +38,28 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "cookie_jar",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/cookie_jar-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.20"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "dio",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "dio_cookie_manager",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio_cookie_manager-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
     },
     {
       "name": "fake_async",
@@ -90,6 +108,12 @@
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-7.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.7"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_parser-3.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
     },
     {
       "name": "intl",
@@ -266,7 +290,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-11-09T09:41:23.766336Z",
+  "generated": "2020-11-10T03:23:21.841626Z",
   "generator": "pub",
   "generatorVersion": "2.10.2"
 }

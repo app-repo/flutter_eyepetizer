@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_openeye/page/community/community_page.dart';
 import 'package:flutter_openeye/page/home/home_page.dart';
 import 'package:flutter_openeye/page/mine/mine_page.dart';
 import 'package:flutter_openeye/page/notification/notification_page.dart';
+import 'package:flutter_openeye/public.dart';
 
 class IndexPage extends StatefulWidget {
   @override

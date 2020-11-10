@@ -30,6 +30,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   synchronized: ^2.1.0
+  dio: 3.0.10
+  dio_cookie_manager: ^1.0.0
+  cookie_jar: ^1.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +73,6 @@ flutter:
     - images/ic_account_login_header.png
     - images/ic_account_login_password.png
     - images/ic_account_login_user_name.png
-    - images/login_weixin.png
     - images/ic_qq.png
     - images/ic_wx.png
 
