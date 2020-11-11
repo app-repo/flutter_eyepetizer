@@ -159,7 +159,8 @@ class LoginPageState extends State<LoginPage> {
               ))
             ],
           ),
-          value: SystemUiOverlayStyle.dark),
+          value: SystemUiOverlayStyle.dark
+      ),
     );
   }
 }

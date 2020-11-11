@@ -91,7 +91,8 @@ class IndexPageState extends State<IndexPage>
             children: pages,
           ),
         ),
-        value: SystemUiOverlayStyle.dark);
+        value: SystemUiOverlayStyle.dark
+    );
   }
 
   void initNavigationItem() {

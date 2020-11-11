@@ -6,6 +6,8 @@ class Constant {
   static const String ACCOUNT_BASE_URL = "https://account.kaiyanapp.com/";
 
   static const String X_THEFAIR_APPID = "ahpagrcrf2p7m6rg";
+  static const String COOKIE =
+      "ky_auth=_V1MTU3NTEzMjAxOTU6MTYxMjgzNTA3MjA1NTo0NjRmYmJmNjJiMjlmNmU3YTRjODc5ODM3YTI1OWZiMw";
 
   static const String X_THEFAIR_AUTH =
       "GNDG32JRfMGTxw/W6tBWtk+K577rigUWd73muNoT6alLkiu7XEoGfqeyJFndxKFGO5wIHJLUawMGxg6uWYR6dC7auVfSZsM86u94o4ETAmQZ3WTWo28+6KXhL/Uj5FP3ZiZmNskoqRz2jwHjQncP9nM2XB2jbZUbL9YTZ6Se3FpSxJlkC824c3bYUSQ07jTZ6QXpGdc0g+p948/trkFAmCQuSuCZP5y5Z3QpG1qeGdPPHuusGea7BsOf4/aO9r+FL5Y05RtfE+DAYNsajfjBFQ==";
@@ -43,9 +45,6 @@ class Constant {
   static const String USER_AGREEMENT =
       "http://www.eyepetizer.net/agreement.html";
 
-  //http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1603155600000&num=2&udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29
-  //http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1602982800000&num=2&udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29
-//http://baobab.kaiyanapp.com/api/v5/index/tab/feed?date=1602810000000&num=2&udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29
   static const String GET_PAGE = "v1/card/page/get_page";
 
   static const String HOME_REC =

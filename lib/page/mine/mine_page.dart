@@ -23,7 +23,6 @@ class MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
       width: double.infinity,
       child: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           children: [
             GestureDetector(
               onTap: () {
@@ -36,12 +35,14 @@ class MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
                   width: 60,
                   height: 60,
                   child: CircleAvatar(
-                    child: Image.asset("images/pgc_default_avatar.png"),
+                    backgroundColor: Colors.white,
+                    backgroundImage: CachedNetworkImageProvider(
+                        "http://img.kaiyanapp.com/63b16ca519d8724fe9763de0426138cd.jpeg?imageMogr2/quality/60/format/jpg"),
                   )),
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
-              child: Text("点击登录即可评论及发布内容"),
+              child: Text("开眼用户_fphu4s"),
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
@@ -63,36 +64,20 @@ class MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
               height: 0.5,
               color: Colors.grey[350],
             ),
-            Container(
-              child: Text(items[0]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
-            Container(
-              child: Text(items[1]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
-            Container(
-              child: Text(items[2]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
-            Container(
-              child: Text(items[3]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
-            Container(
-              child: Text(items[4]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
-            Container(
-              child: Text(items[5]),
-              alignment: Alignment.center,
-              height: 50,
-            ),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: items
+                      .map((e) => Container(
+                            height: 80,
+                            alignment: Alignment.center,
+                            child: Text(e),
+                          ))
+                      .toList(),
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -4,52 +4,38 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_openeye/http/interceptor/header_interceptor.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'interceptor/log_interceptor.dart';
+
 var dio;
 
-class HttpUtil {
+class HttpManager {
   // 工厂模式
-  static HttpUtil get instance => _getInstance();
+  static HttpManager get instance => _getInstance();
 
-  static HttpUtil _httpUtil;
+  static HttpManager _httpManager;
 
-  static HttpUtil _getInstance() {
-    if (_httpUtil == null) {
-      _httpUtil = HttpUtil();
+  static HttpManager _getInstance() {
+    if (_httpManager == null) {
+      _httpManager = HttpManager();
     }
-    return _httpUtil;
+    return _httpManager;
   }
 
-  HttpUtil() {
+  HttpManager() {
     BaseOptions options = BaseOptions(
         connectTimeout: 5000,
         receiveTimeout: 3000,
+        responseType: ResponseType.json,
         baseUrl: Constant.COMMON_BASE_URL);
     dio = new Dio(options);
     var cookieJar = CookieJar();
     dio.interceptors.add(CookieManager(cookieJar));
-    dio.interceptors
-        .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
-      print("========================请求数据===================");
-      print("url=${options.uri.toString()}");
-      print("params=${options.data}");
-      // dio.lock();
-      // await SpUtil.getToken().then((token) {
-      //   options.headers[Strings.TOKEN] = token;
-      //   print("X-Litemall-Token=${options.headers[Strings.TOKEN]}");
-      // });
-      // dio.unlock();
-      return options;
-    }, onResponse: (Response response) {
-      print("========================请求数据===================");
-      // print("code=${response.statusCode}");
-      // print("response=${response.data}");
-    }, onError: (DioError error) {
-      print("========================请求错误===================");
-      print("message =${error.message}");
-    }));
+    dio.interceptors.add(HeaderInterceptor());
+    dio.interceptors.add(LogsInterceptors());
   }
 
   Future<Map> get(String url,
