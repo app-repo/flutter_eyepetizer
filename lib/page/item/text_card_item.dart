@@ -37,7 +37,7 @@ class TextCardItemState extends State<TextCardItem> {
                       child: Text(
                         widget.rightTitle,
                         style: TextStyle(
-                            color: Colors.blueAccent,
+                            color: Color.fromARGB(255, 90, 149, 247),
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
                       ),

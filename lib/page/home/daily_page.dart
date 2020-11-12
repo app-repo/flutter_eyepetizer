@@ -1,9 +1,9 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/daily_entity.dart';
-import 'package:flutter_openeye/page/home/follow_card_video_item.dart';
-import 'package:flutter_openeye/page/home/information_card_item.dart';
-import 'package:flutter_openeye/page/home/text_card_item.dart';
+import 'package:flutter_openeye/page/item/follow_card_video_item.dart';
+import 'package:flutter_openeye/page/item/information_card_item.dart';
+import 'package:flutter_openeye/page/item/text_card_item.dart';
 import 'package:flutter_openeye/public.dart';
 
 class DailyPage extends StatefulWidget {

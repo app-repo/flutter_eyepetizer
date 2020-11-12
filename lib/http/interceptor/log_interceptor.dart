@@ -19,7 +19,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     if (DEBUG) {
       print("请求url：${options.uri}");
-      print('请求头: ' + options.headers.toString());
+      // print('请求头: ' + options.headers.toString());
       if (options.data != null) {
         print('请求参数: ' + options.data.toString());
       }
@@ -49,7 +49,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   onResponse(Response response) async {
     if (DEBUG) {
       if (response != null) {
-        print('返回参数: ' + response.toString());
+        // print('返回参数: ' + response.toString());
       }
     }
     if (response.data is Map || response.data is List) {

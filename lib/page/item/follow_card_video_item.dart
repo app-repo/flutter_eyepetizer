@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_openeye/public.dart';
+import 'package:sprintf/sprintf.dart';
 
 class FollowCardVideoItem extends StatefulWidget {
   String backgroundImageUrl;
@@ -19,6 +20,14 @@ class FollowCardVideoItem extends StatefulWidget {
 class FollowCardVideoItemState extends State<FollowCardVideoItem> {
   @override
   Widget build(BuildContext context) {
+    var time = "";
+    if (widget.duration < 60) {
+      time = sprintf("%02d", [(widget.duration % 60).toInt()]);
+    } else if (widget.duration < 3600) {
+      time = sprintf(
+          "%02d:%02d", [widget.duration ~/ 60, (widget.duration % 60).toInt()]);
+    }
+
     return Container(
       height: 296,
       padding: EdgeInsets.only(left: 12, right: 12, top: 15),
@@ -28,7 +37,7 @@ class FollowCardVideoItemState extends State<FollowCardVideoItem> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                    topLeft: Radius.circular(6), topRight: Radius.circular(6)),
                 child: CachedNetworkImage(
                   imageUrl: widget.backgroundImageUrl,
                   width: double.maxFinite,
@@ -46,7 +55,7 @@ class FollowCardVideoItemState extends State<FollowCardVideoItem> {
                       color: Color.fromARGB(100, 32, 31, 31),
                       borderRadius: BorderRadius.all(Radius.circular(3))),
                   child: Text(
-                    "01:12",
+                    time,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

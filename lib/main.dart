@@ -5,6 +5,7 @@ import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_openeye/config/routes.dart';
 import 'package:flutter_openeye/public.dart';
+import 'package:flutter_openeye/widget/eye_footer.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
               color: Color.fromARGB(100, 23, 173, 176),
             ),
         // Configure the default header indicator. If you have the same header indicator for each page, you need to set this
-        footerBuilder: () => ClassicFooter(),
+        footerBuilder: () => EyeFooter(),
         // Configure default bottom indicator
         headerTriggerDistance: 80.0,
         // header trigger refresh trigger distance
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         // Maximum dragging range at the bottom
         enableScrollWhenRefreshCompleted: true,
         //This property is incompatible with PageView and TabBarView. If you need TabBarView to slide left and right, you need to set it to true.
-        enableLoadingWhenFailed: true,
+        enableLoadingWhenFailed: false,
         //In the case of load failure, users can still trigger more loads by gesture pull-up.
         hideFooterWhenNotFull: false,
         // Disable pull-up to load more functionality when Viewport is less than one screen

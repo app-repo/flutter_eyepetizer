@@ -11,3 +11,6 @@ export 'package:flutter_spinkit/flutter_spinkit.dart';
 export 'package:flutter_openeye/util/map_util.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:flutter_openeye/util/time_util.dart';
+export 'package:sprintf/sprintf.dart';
+export 'package:flutter_swiper/flutter_swiper.dart';
+export 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
