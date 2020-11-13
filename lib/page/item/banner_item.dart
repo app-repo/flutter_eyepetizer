@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/public.dart';
 
-class BannerItem extends StatefulWidget {
+class BannerItem extends StatelessWidget {
   String image;
 
   BannerItem(this.image);
 
-  @override
-  State<StatefulWidget> createState() => BannerItemState();
-}
-
-class BannerItemState extends State<BannerItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,9 +13,15 @@ class BannerItemState extends State<BannerItem> {
       height: 200,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(6),
-        child: CachedNetworkImage(imageUrl: widget.image, fit: BoxFit.cover,),
+        child: Hero(
+          child: CachedNetworkImage(
+            imageUrl: image.replaceAll(
+                "60/format/jpg", "10/format/webp"),
+            fit: BoxFit.cover,
+          ),
+          tag: image,
+        ),
       ),
     );
   }
-
 }

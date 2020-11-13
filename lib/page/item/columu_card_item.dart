@@ -3,19 +3,14 @@ import 'package:flutter_openeye/entity/home_find_entity.dart';
 import 'package:flutter_openeye/page/item/text_card_item.dart';
 import 'package:flutter_openeye/public.dart';
 
-class ColumnCardItem extends StatefulWidget {
+class ColumnCardItem extends StatelessWidget {
   ItemList _item;
 
   ColumnCardItem(this._item);
 
   @override
-  State<StatefulWidget> createState() => ColumnCardItemState();
-}
-
-class ColumnCardItemState extends State<ColumnCardItem> {
-  @override
   Widget build(BuildContext context) {
-    var data = widget._item.data;
+    var data = _item.data;
     var ratio = (205 / 2) / ((MediaQuery.of(context).size.width - 24 - 5) / 2);
     return Container(
       height: 280,
@@ -42,12 +37,12 @@ class ColumnCardItemState extends State<ColumnCardItem> {
                         ConstrainedBox(
                           constraints: BoxConstraints.expand(),
                           child: ClipRRect(
-                            child: CachedNetworkImage(
-                              imageUrl: data.itemList[index].data.image,
-                              fit: BoxFit.fill,
-                              // width:
-                              //     (MediaQuery.of(context).size.width - 24 - 5) /
-                              //         2,
+                            child: Hero(
+                              child: CachedNetworkImage(
+                                imageUrl: data.itemList[index].data.image,
+                                fit: BoxFit.fill,
+                              ),
+                              tag: data.itemList[index].data.image,
                             ),
                             borderRadius: BorderRadius.circular(6),
                           ),

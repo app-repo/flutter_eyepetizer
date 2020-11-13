@@ -14,7 +14,7 @@ class MinePage extends StatefulWidget {
 class MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
   List<String> items = ["我的关注", "观看记录", "通知开关", "我的徽章", "意见反馈", "我要投稿"];
 
-  var avatar = SpUtil.getString("avatar");
+  var avatar = SPUtil.getString("avatar");
 
   @override
   Widget build(BuildContext context) {

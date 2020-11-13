@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openeye/config/routes.dart';
 
-class TextCardItem extends StatefulWidget {
+class TextCardItem extends StatelessWidget {
   String title;
   String rightTitle;
 
@@ -8,11 +9,6 @@ class TextCardItem extends StatefulWidget {
 
   TextCardItem({@required this.title, this.rightTitle, this.actionUrl});
 
-  @override
-  State<StatefulWidget> createState() => TextCardItemState();
-}
-
-class TextCardItemState extends State<TextCardItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,37 +19,53 @@ class TextCardItemState extends State<TextCardItem> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.title,
+            title,
             style: TextStyle(
                 fontSize: 22, fontWeight: FontWeight.w900, color: Colors.black),
           ),
-          widget.rightTitle.isEmpty
+          rightTitle.isEmpty
               ? Container()
               : Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        widget.rightTitle,
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 90, 149, 247),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
+                    GestureDetector(
+                      onTap: () {
+                        onTabClick(context);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          rightTitle,
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 90, 149, 247),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                     SizedBox(
                       width: 15,
                     ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Colors.blueAccent,
-                      size: 20,
+                    GestureDetector(
+                      onTap: () {
+                        onTabClick(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.blueAccent,
+                        size: 20,
+                      ),
                     )
                   ],
                 )
         ],
       ),
     );
+  }
+
+  void onTabClick(BuildContext context) {
+    if (actionUrl.contains("categories")) {
+      Routes.navigateTo(context, Routes.categoryPage);
+    }
   }
 }

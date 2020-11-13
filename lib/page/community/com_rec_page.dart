@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/com_rec_entity.dart';
+import 'package:flutter_openeye/page/item/community_column_card_item.dart';
 import 'package:flutter_openeye/page/item/item_collection_item.dart';
 import 'package:flutter_openeye/page/item/scroll_card_item.dart';
 
@@ -63,35 +64,41 @@ class ComRecPageState extends State<ComRecPage>
       );
     } else
       return Scaffold(
-        body: SmartRefresher(
-          controller: _controller,
-          enablePullDown: true,
-          enablePullUp: true,
-          onRefresh: _onRequest,
-          onLoading: () {
-            _onRequest(isRefresh: false);
-          },
-          child: StaggeredGridView.countBuilder(
-            crossAxisCount: 4,
-            itemCount: _itemList.length,
-            itemBuilder: (BuildContext context, int index) => new Container(
-                color: Colors.green,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      "http://img.kaiyanapp.com/b6ce379ab5d33d569f6970f18418d05f.jpeg?imageMogr2/quality/60/format/jpg",
-                  height: 100,
-                )),
-            staggeredTileBuilder: (int index) {
-              if (index == 0 || index == 1) {
-                return new StaggeredTile.count(4, 3);
-              }
-              return new StaggeredTile.count(2, 3);
-            },
-            mainAxisSpacing: 4.0,
-            crossAxisSpacing: 4.0,
-          ),
-        ),
-      );
+          body: Container(
+            padding: EdgeInsets.only(left: 12, right: 12),
+            child: SmartRefresher(
+              controller: _controller,
+              enablePullDown: true,
+              enablePullUp: true,
+              onRefresh: _onRequest,
+              onLoading: () {
+                _onRequest(isRefresh: false);
+              },
+              // child: GridView.builder(
+              //   itemCount: _itemList.length,
+              //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisSpacing: 5,
+              //       mainAxisSpacing: 5,
+              //       crossAxisCount: 2,
+              //       childAspectRatio: 0.6),
+              //   itemBuilder: buildItem,
+              // )
+              child: StaggeredGridView.countBuilder(
+                crossAxisCount: 4,
+                itemCount: _itemList.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    buildItem(context, index),
+                staggeredTileBuilder: (int index) {
+                  if (index == 0 || index == 1) {
+                    return new StaggeredTile.fit(4);
+                  }
+                  return new StaggeredTile.fit(2);
+                },
+                mainAxisSpacing: 15.0,
+                crossAxisSpacing: 5.0,
+              ),
+            ),
+          ));
   }
 
   @override
@@ -107,15 +114,19 @@ class ComRecPageState extends State<ComRecPage>
         {
           if (item.data.dataType == 'HorizontalScrollCard') {
             List<String> urls =
-                item.data.itemList.map((e) => e.data.image).toList();
-            return ScrollCardItem(urls);
+            item.data.itemList.map((e) => e.data.image).toList();
+            return ScrollCardItem(
+              urls,
+              isPadding: false,
+            );
           } else if (item.data.dataType == 'ItemCollection') {
             return ItemCollectionItem(item);
           }
+          return Container();
         }
         break;
       case 'communityColumnsCard':
-        break;
+        return ComColumnCardItem(item);
       default:
         return Container();
     }

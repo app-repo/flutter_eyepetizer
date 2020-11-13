@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/config/routes.dart';
@@ -18,7 +19,8 @@ class SplashPageState extends State<SplashPage>
   @override
   void initState() {
     super.initState();
-    SpUtil.getInstance();
+    SPUtil.getInstance();
+    ScreenUtil.getInstance();
     // controller = AnimationController(
     //     duration: Duration(milliseconds: 2500), vsync: this);
     Future.delayed(Duration(milliseconds: 2500), () {

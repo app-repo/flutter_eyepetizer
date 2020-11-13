@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/home_find_entity.dart';
+import 'package:flutter_openeye/http/constant.dart';
+import 'package:flutter_openeye/http/http_manager.dart';
 import 'package:flutter_openeye/page/item/brief_card_item.dart';
 import 'package:flutter_openeye/page/item/columu_card_item.dart';
 import 'package:flutter_openeye/page/item/scroll_card_item.dart';
 import 'package:flutter_openeye/page/item/square_cart_item.dart';
 import 'package:flutter_openeye/page/item/text_card_item.dart';
 import 'package:flutter_openeye/page/item/video_small_card_item.dart';
-import 'package:flutter_openeye/public.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class FindPage extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
 
   List<ItemList> _itemList = List();
 
-  RefreshController _controller = RefreshController(initialRefresh: false);
+  // RefreshController _controller = RefreshController(initialRefresh: false);
 
   @override
   void initState() {
@@ -34,8 +35,8 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
     _itemList.clear();
     _itemList.addAll(entity.itemList);
     if (mounted) this.setState(() {});
-    _controller.refreshCompleted();
-    _controller.loadNoData();
+    // _controller.refreshCompleted();
+    // _controller.loadNoData();
   }
 
   @override
@@ -48,74 +49,62 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
       );
     } else
       return Scaffold(
-        body: SmartRefresher(
-          controller: _controller,
-          enablePullDown: true,
-          enablePullUp: true,
-          onRefresh: _onRequest,
-          child: ListView.builder(
-            itemCount: _itemList.length,
-            itemBuilder: (c, pos) {
-              return buildItem(c, pos);
-            },
+          body: RefreshIndicator(
+        onRefresh: _onRequest,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: _itemList.map((e) => buildItem(e)).toList()
+              ..add(Container(
+                height: 50,
+                alignment: Alignment.center,
+                child: Text(
+                  "-The End-",
+                  style: TextStyle(
+                      fontSize: 18, color: Colors.black, fontFamily: "Lobster"),
+                ),
+              )),
           ),
         ),
-      );
+      ));
   }
 
-  Widget buildItem(BuildContext c, int pos) {
-    // if (_itemList.length - 1 == pos) {
-    //   return Container(
-    //     height: 80,
-    //     alignment: Alignment.center,
-    //     child: Text(
-    //       "-The End-",
-    //       style: TextStyle(
-    //           fontSize: 18, color: Colors.black, fontFamily: "Lobster"),
-    //     ),
-    //   );
-    // }
-    var item = _itemList[pos];
+  Widget buildItem(ItemList item) {
     var type = item.type;
-    switch (type) {
-      case 'horizontalScrollCard':
-        {
-          List<String> urls =
-              item.data.itemList.map((e) => e.data.image).toList();
-          return ScrollCardItem(urls);
-        }
-      case 'specialSquareCardCollection':
-        return SquareCardItem(item);
-      case 'columnCardList':
-        return ColumnCardItem(item);
-      case 'briefCard':
-        return BriefCardItem(
+    if (type == 'videoSmallCard') {
+      return VideoSmallCardItem(
+          item.data.cover.feed,
           item.data.title,
-          item.data.description,
-          item.data.icon,
-          isFollow: item.data.dataType == 'TagBriefCard'
-              ? item.data.follow.followed
-              : false,
-          isShowAtt: item.data.dataType == 'TagBriefCard',
-        );
-        break;
-      case 'textCard':
-        return TextCardItem(
-          title: item.data.text,
-          rightTitle: item.data.rightText ?? "",
-          actionUrl: item.data.actionUrl ?? "",
-        );
-        break;
-      case 'videoSmallCard':
-        return VideoSmallCardItem(
-            item.data.cover.feed,
-            item.data.title,
-            item.data.category + " / " + item.data.author.name,
-            item.data.duration);
-        break;
-      default:
-        return Container();
+          item.data.category + " / " + item.data.author.name,
+          item.data.duration);
+    } else if (type == 'horizontalScrollCard') {
+      {
+        List<String> urls =
+            item.data.itemList.map((e) => e.data.image).toList();
+        return ScrollCardItem(urls);
+      }
+    } else if (type == 'specialSquareCardCollection') {
+      return SquareCardItem(item);
+    } else if (type == 'columnCardList') {
+      return ColumnCardItem(item);
+    } else if (type == 'textCard') {
+      return TextCardItem(
+        title: item.data.text,
+        rightTitle: item.data.rightText ?? "",
+        actionUrl: item.data.actionUrl ?? "",
+      );
+    } else if (type == 'briefCard') {
+      return BriefCardItem(
+        item.data.title,
+        item.data.description,
+        item.data.icon,
+        isFollow: item.data.dataType == 'TagBriefCard'
+            ? item.data.follow.followed
+            : false,
+        isShowAtt: item.data.dataType == 'TagBriefCard',
+      );
     }
+    return Container();
   }
 
   @override

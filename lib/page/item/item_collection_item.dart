@@ -1,24 +1,19 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/com_rec_entity.dart';
 
+import '../../public.dart';
 
-class ItemCollectionItem extends StatefulWidget {
+class ItemCollectionItem extends StatelessWidget {
   ItemList _item;
 
   ItemCollectionItem(this._item);
 
   @override
-  State<StatefulWidget> createState() => ItemCollectionItemState();
-}
-
-class ItemCollectionItemState extends State<ItemCollectionItem> {
-  @override
   Widget build(BuildContext context) {
-    var data = widget._item.data;
+    var data = _item.data;
     var ratio = 90 / ((MediaQuery.of(context).size.width - 24 - 5) / 2);
     return Container(
-      padding: EdgeInsets.only(left: 12, right: 12, top: 5, bottom: 5),
+      padding: EdgeInsets.only(top: 5, bottom: 5),
       height: 100,
       child: GridView.builder(
         scrollDirection: Axis.horizontal,
@@ -33,7 +28,8 @@ class ItemCollectionItemState extends State<ItemCollectionItem> {
                   constraints: BoxConstraints.expand(),
                   child: ClipRRect(
                     child: CachedNetworkImage(
-                      imageUrl: data.itemList[index].data.bgPicture,
+                      imageUrl: data.itemList[index].data.bgPicture
+                          .replaceAll("quality/60", "quality/10!"),
                       fit: BoxFit.fill,
                     ),
                     borderRadius: BorderRadius.circular(6),

@@ -128,15 +128,15 @@ class RecommendPageState extends State<RecommendPage>
             item.data.category + " / " + item.data.author.name,
             item.data.duration);
         break;
-      case 'banner':
-        return BannerItem(item.data.image);
-        break;
-      case 'ugcSelectedCardCollection':
-        if (item.data.count != 3) {
-          return Container();
-        }
-        return UgcCardItem(item.data.itemList);
-        break;
+      // case 'banner':
+      //   return BannerItem(item.data.image);
+      //   break;
+      // case 'ugcSelectedCardCollection':
+      //   if (item.data.count != 3) {
+      //     return Container();
+      //   }
+      //   return UgcCardItem(item.data.itemList);
+      //   break;
       case 'briefCard':
         return BriefCardItem(
           item.data.title,

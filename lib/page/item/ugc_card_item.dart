@@ -2,30 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/home_rec_entity.dart';
 import 'package:flutter_openeye/public.dart';
 
-class UgcCardItem extends StatefulWidget {
+class UgcCardItem extends StatelessWidget {
   List<ItemListX> _list;
 
   UgcCardItem(this._list);
 
   @override
-  State<StatefulWidget> createState() => UgcCardItemState();
-}
-
-class UgcCardItemState extends State<UgcCardItem> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      margin: EdgeInsets.only(top: 10,bottom: 10),
+      margin: EdgeInsets.only(top: 10, bottom: 10),
       padding: EdgeInsets.only(left: 12, right: 12),
       child: Row(
         children: [
           Expanded(
             flex: 1,
-            child: CachedNetworkImage(
-              fit: BoxFit.cover,
-              height: 180,
-              imageUrl: widget._list[0].data.cover.feed,
+            child:Hero(
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                height: 180,
+                imageUrl: _list[0].data.cover.feed.replaceAll(
+                    "60/format/jpg", "10/format/webp"),
+              ),
+              tag: _list[0].data.cover.feed,
             ),
           ),
           SizedBox(
@@ -39,9 +38,13 @@ class UgcCardItemState extends State<UgcCardItem> {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: widget._list[1].data.cover.feed,
+                    child: Hero(
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: _list[1].data.cover.feed.replaceAll(
+                            "60/format/jpg", "10/format/webp"),
+                      ),
+                      tag: _list[1].data.cover.feed,
                     ),
                   ),
                   SizedBox(
@@ -49,9 +52,13 @@ class UgcCardItemState extends State<UgcCardItem> {
                   ),
                   Expanded(
                     flex: 1,
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: widget._list[2].data.cover.feed,
+                    child: Hero(
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: _list[2].data.cover.feed.replaceAll(
+                            "60/format/jpg", "10/format/webp"),
+                      ),
+                      tag: _list[2].data.cover.feed,
                     ),
                   )
                 ],

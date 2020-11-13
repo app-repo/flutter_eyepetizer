@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/public.dart';
 
-class BriefCardItem extends StatefulWidget {
+class BriefCardItem extends StatelessWidget {
   String title;
   String dec;
   String icon;
@@ -12,11 +12,6 @@ class BriefCardItem extends StatefulWidget {
       {this.isFollow, this.isShowAtt});
 
   @override
-  State<StatefulWidget> createState() => BriefCardItemState();
-}
-
-class BriefCardItemState extends State<BriefCardItem> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: 90,
@@ -25,11 +20,16 @@ class BriefCardItemState extends State<BriefCardItem> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(3.0),
-            child: CachedNetworkImage(
-              imageUrl: widget.icon,
-              height: 70,
-              width: 70,
-              fit: BoxFit.cover,
+            child: Hero(
+              child: CachedNetworkImage(
+                fadeInDuration: Duration.zero,
+                imageUrl: icon.replaceAll(
+                    "quality/60", "quality/60/thumbnail/!200x200"),
+                height: 70,
+                width: 70,
+                fit: BoxFit.cover,
+              ),
+              tag: icon,
             ),
           ),
           SizedBox(
@@ -45,7 +45,7 @@ class BriefCardItemState extends State<BriefCardItem> {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.title,
+                      title,
                       maxLines: 1,
                       style: TextStyle(
                           color: Colors.black,
@@ -59,7 +59,7 @@ class BriefCardItemState extends State<BriefCardItem> {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.dec,
+                      dec,
                       maxLines: 1,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -71,18 +71,18 @@ class BriefCardItemState extends State<BriefCardItem> {
           SizedBox(
             width: 6,
           ),
-          widget.isShowAtt
+          isShowAtt
               ? Container(
                   padding:
                       EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: widget.isFollow ? Colors.grey[200] : Colors.grey,
+                        color: isFollow ? Colors.grey[200] : Colors.grey,
                         width: 1,
                       )),
                   child: Text(
-                    widget.isFollow ? "已关注" : "+关注",
+                    isFollow ? "已关注" : "+关注",
                     style: TextStyle(fontSize: 12),
                   ),
                 )

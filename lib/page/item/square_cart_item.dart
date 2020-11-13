@@ -3,19 +3,14 @@ import 'package:flutter_openeye/entity/home_find_entity.dart';
 import 'package:flutter_openeye/page/item/text_card_item.dart';
 import 'package:flutter_openeye/public.dart';
 
-class SquareCardItem extends StatefulWidget {
+class SquareCardItem extends StatelessWidget {
   ItemList _itemList;
 
   SquareCardItem(this._itemList);
 
   @override
-  State<StatefulWidget> createState() => SquareCardItemState();
-}
-
-class SquareCardItemState extends State<SquareCardItem> {
-  @override
   Widget build(BuildContext context) {
-    var data = widget._itemList.data;
+    var data = _itemList.data;
     return Container(
       height: 280,
       child: Column(
@@ -39,9 +34,12 @@ class SquareCardItemState extends State<SquareCardItem> {
                       alignment: Alignment.center,
                       children: [
                         ClipRRect(
-                          child: CachedNetworkImage(
-                            imageUrl: data.itemList[index].data.image,
-                            fit: BoxFit.fill,
+                          child: Hero(
+                            child: CachedNetworkImage(
+                              imageUrl: data.itemList[index].data.image,
+                              fit: BoxFit.fill,
+                            ),
+                            tag: data.itemList[index].data.image,
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),

@@ -3,7 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:sprintf/sprintf.dart';
 
-class FollowCardVideoItem extends StatefulWidget {
+class FollowCardVideoItem extends StatelessWidget {
   String backgroundImageUrl;
   int duration;
   String imgUrl;
@@ -14,18 +14,12 @@ class FollowCardVideoItem extends StatefulWidget {
       this.title, this.dec);
 
   @override
-  State<StatefulWidget> createState() => FollowCardVideoItemState();
-}
-
-class FollowCardVideoItemState extends State<FollowCardVideoItem> {
-  @override
   Widget build(BuildContext context) {
     var time = "";
-    if (widget.duration < 60) {
-      time = sprintf("%02d", [(widget.duration % 60).toInt()]);
-    } else if (widget.duration < 3600) {
-      time = sprintf(
-          "%02d:%02d", [widget.duration ~/ 60, (widget.duration % 60).toInt()]);
+    if (duration < 60) {
+      time = sprintf("%02d", [(duration % 60).toInt()]);
+    } else if (duration < 3600) {
+      time = sprintf("%02d:%02d", [duration ~/ 60, (duration % 60).toInt()]);
     }
 
     return Container(
@@ -38,11 +32,15 @@ class FollowCardVideoItemState extends State<FollowCardVideoItem> {
               ClipRRect(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(6), topRight: Radius.circular(6)),
-                child: CachedNetworkImage(
-                  imageUrl: widget.backgroundImageUrl,
-                  width: double.maxFinite,
-                  height: 200,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  child: CachedNetworkImage(
+                    imageUrl: backgroundImageUrl.replaceAll(
+                        "quality/60", "quality/10!"),
+                    width: double.maxFinite,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                  tag: backgroundImageUrl,
                 ),
               ),
               Positioned(
@@ -72,7 +70,8 @@ class FollowCardVideoItemState extends State<FollowCardVideoItem> {
                   height: 50,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    backgroundImage: CachedNetworkImageProvider(widget.imgUrl),
+                    backgroundImage: CachedNetworkImageProvider(
+                        imgUrl.replaceAll("60/format/jpg", "10/format/webp")),
                   ),
                 ),
                 SizedBox(
@@ -84,13 +83,13 @@ class FollowCardVideoItemState extends State<FollowCardVideoItem> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.title,
+                        title,
                         maxLines: 1,
                         style: TextStyle(color: Colors.black),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        widget.dec,
+                        dec,
                         maxLines: 1,
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                         overflow: TextOverflow.ellipsis,

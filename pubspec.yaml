@@ -84,6 +84,12 @@ flutter:
     - images/ic_launcher.png
     - images/ic_arrow_right.png
     - images/icon_share.png
+    - images/muti_pic.png
+    - images/icon_play.png
+    - images/ic_action_favorites_grey_without_padding.png
+
+
+
   fonts:
     - family: Lobster
       fonts:

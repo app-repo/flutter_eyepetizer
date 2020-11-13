@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:sprintf/sprintf.dart';
 
-class VideoSmallCardItem extends StatefulWidget {
+class VideoSmallCardItem extends StatelessWidget {
   String imgUrl;
   String title;
   String dec;
@@ -11,18 +11,12 @@ class VideoSmallCardItem extends StatefulWidget {
   VideoSmallCardItem(this.imgUrl, this.title, this.dec, this.duration);
 
   @override
-  State<StatefulWidget> createState() => VideoSmallCardItemState();
-}
-
-class VideoSmallCardItemState extends State<VideoSmallCardItem> {
-  @override
   Widget build(BuildContext context) {
     var time = "";
-    if (widget.duration < 60) {
-      time = sprintf("%02d", [(widget.duration % 60).toInt()]);
-    } else if (widget.duration < 3600) {
-      time = sprintf(
-          "%02d:%02d", [widget.duration ~/ 60, (widget.duration % 60).toInt()]);
+    if (duration < 60) {
+      time = sprintf("%02d", [(duration % 60).toInt()]);
+    } else if (duration < 3600) {
+      time = sprintf("%02d:%02d", [duration ~/ 60, (duration % 60).toInt()]);
     }
     return Container(
       height: 115,
@@ -33,11 +27,15 @@ class VideoSmallCardItemState extends State<VideoSmallCardItem> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: widget.imgUrl,
-                  height: 100,
-                  width: 170,
+                child: Hero(
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: imgUrl.replaceAll(
+                        "quality/60", "quality/60!/thumbnail/!170x100"),
+                    height: 100,
+                    width: 170,
+                  ),
+                  tag: imgUrl,
                 ),
               ),
               Positioned(
@@ -67,7 +65,7 @@ class VideoSmallCardItemState extends State<VideoSmallCardItem> {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      widget.title,
+                      title,
                       style: TextStyle(fontSize: 16, color: Colors.black),
                       maxLines: 2,
                     ),
@@ -79,7 +77,7 @@ class VideoSmallCardItemState extends State<VideoSmallCardItem> {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            widget.dec,
+                            dec,
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),

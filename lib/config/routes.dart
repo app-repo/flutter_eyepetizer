@@ -5,6 +5,8 @@ import 'package:flutter_openeye/public.dart';
 class Routes {
   static String indexPage = "/indexpage";
   static String loginPage = "/loginpage";
+  static String categoryPage = "/categorypage";
+  static String rankPage = "/rankpage";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -15,13 +17,15 @@ class Routes {
 
     router.define(indexPage, handler: indexHandler);
     router.define(loginPage, handler: loginHandler);
+    router.define(categoryPage, handler: categoryHandler);
+    router.define(rankPage, handler: rankHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配
   static Future navigateTo(BuildContext context, String path,
       {Map<String, dynamic> params,
-        bool clearStack = false,
-        TransitionType transition = TransitionType.inFromRight}) {
+      bool clearStack = false,
+      TransitionType transition = TransitionType.inFromRight}) {
     String query = "";
     if (params != null) {
       int index = 0;
