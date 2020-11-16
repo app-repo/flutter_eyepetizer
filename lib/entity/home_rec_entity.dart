@@ -1866,6 +1866,7 @@ class Header {
   String _cover;
   dynamic _label;
   String _actionUrl;
+  String issuerName;
   dynamic _labelList;
   String _rightText;
   String _icon;
@@ -1921,6 +1922,7 @@ class Header {
       String icon,
       String iconType,
       String description,
+        String issuerName,
       int time,
       bool showHateVideo}) {
     _id = id;
@@ -1937,6 +1939,7 @@ class Header {
     _icon = icon;
     _iconType = iconType;
     _description = description;
+    this.issuerName = issuerName;
     _time = time;
     _showHateVideo = showHateVideo;
   }
@@ -1956,6 +1959,7 @@ class Header {
     _icon = json["icon"];
     _iconType = json["iconType"];
     _description = json["description"];
+    issuerName = json["_issuerName"];
     _time = json["time"];
     _showHateVideo = json["showHateVideo"];
   }
@@ -1976,6 +1980,7 @@ class Header {
     map["icon"] = _icon;
     map["iconType"] = _iconType;
     map["description"] = _description;
+    map["issuerName"] = issuerName;
     map["time"] = _time;
     map["showHateVideo"] = _showHateVideo;
     return map;

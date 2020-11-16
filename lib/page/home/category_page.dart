@@ -100,6 +100,21 @@ class CategoryPageState extends State<CategoryPage> {
         onTap: () {
           if (item.data.actionUrl.contains("ranklist")) {
             Routes.navigateTo(context, Routes.rankPage);
+          } else if (item.data.actionUrl.contains("campaign/list")) {
+            Routes.navigateTo(context, Routes.specialTopicPage);
+          } else if (item.data.actionUrl.contains("tag")) {
+            var url = item.data.actionUrl;
+            var s = url.substring(17);
+            var id = s.substring(0, s.indexOf("/"));
+            url = url.substring(url.indexOf("?") + 1);
+            List<String> params = url.split("&");
+            var map = Map<String, dynamic>();
+            params.forEach((str) {
+              map[str.split("=")[0]] = Uri.decodeComponent(str.split("=")[1]);
+            });
+            map['id'] = id;
+            map["image"] = item.data.image;
+            Routes.navigateTo(context, Routes.tagVideoPage, params: map);
           }
         },
       ),

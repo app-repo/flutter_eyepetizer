@@ -106,10 +106,10 @@ class Constant {
   static const String COM_ATTENTION =
       "api/v6/community/tab/follow?udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29";
 
-  static const String LIGHT_TOPIC_INTERNAL = "api/v3/lightTopics/internal";
+  static const String LIGHT_TOPIC_INTERNAL = "api/v3/lightTopics/internal/";
 
   static const String PARAMS =
-      "udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29";
+      "?udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29";
 
   static const String VIDEO_RELATED =
       "api/v4/video/related?udid=7a5bd452383b40a1804972422eef008361cf87b8&vc=6030101&vn=6.3.10&size=1080X1920&deviceModel=ALP-AL00&first_channel=huawei&last_channel=huawei&system_version_code=29";

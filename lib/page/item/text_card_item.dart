@@ -12,7 +12,7 @@ class TextCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 50,
       padding: EdgeInsets.only(left: 12, right: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

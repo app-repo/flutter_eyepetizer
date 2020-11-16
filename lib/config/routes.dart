@@ -7,6 +7,9 @@ class Routes {
   static String loginPage = "/loginpage";
   static String categoryPage = "/categorypage";
   static String rankPage = "/rankpage";
+  static String specialTopicPage = "/specialTopicPage";
+  static String lightTopicDetailPage = "/lightTopicDetailPage";
+  static String tagVideoPage = "/tagVideoPage";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -19,6 +22,9 @@ class Routes {
     router.define(loginPage, handler: loginHandler);
     router.define(categoryPage, handler: categoryHandler);
     router.define(rankPage, handler: rankHandler);
+    router.define(specialTopicPage, handler: specialTopicHandler);
+    router.define(lightTopicDetailPage, handler: lightTopicDetailHandler);
+    router.define(tagVideoPage, handler: tagVideoHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配

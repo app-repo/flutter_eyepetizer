@@ -87,6 +87,11 @@ flutter:
     - images/muti_pic.png
     - images/icon_play.png
     - images/ic_action_favorites_grey_without_padding.png
+    - images/ic_action_collect_grey_without_padding.png
+    - images/ic_action_comment.png
+    - images/ic_action_like_heart_black.png
+
+
 
 
 
