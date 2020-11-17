@@ -1,6 +1,7 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/light_topic_internal_entity.dart';
+import 'package:flutter_openeye/page/item/auto_play_follow_card.dart';
 import 'package:flutter_openeye/public.dart';
 
 class LightTopicDetailPage extends StatefulWidget {
@@ -101,46 +102,15 @@ class LightTopicDetailPageState extends State<LightTopicDetailPage> {
 
   Widget buildItem(BuildContext c, int pos) {
     var item = _itemList[pos];
-    return Container(
-      padding: EdgeInsets.only(left: 12, right: 12),
-      margin: EdgeInsets.only(top: 10, bottom: 10),
-      child: GestureDetector(
-          onTap: () => _itemClick(),
-          child: Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                buildItemHeader(item),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  item.data.content.data.description,
-                  maxLines: 3,
-                  style: TextStyle(),
-                  strutStyle: StrutStyle(leading: 0.3),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                ClipRRect(
-                  child: CachedNetworkImage(
-                    imageUrl: item.data.content.data.cover.feed
-                        .replaceAll("60/format/jpg", "10/format/webp"),
-                    height: 180,
-                    width: ScreenUtil.getInstance().screenWidth - 24,
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                buildFooter(item),
-              ],
-            ),
-          )),
-    );
+    return AutoPlayFollowCardPage(
+        item.data.header.icon,
+        item.data.content.data.description,
+        item.data.content.data.title,
+        item.data.content.data.consumption.replyCount.toString(),
+        item.data.content.data.consumption.collectionCount.toString(),
+        item.data.content.data.cover.feed,
+        item.data.content.data.releaseTime,
+        item.data.header.issuerName);
   }
 
   Widget buildItemHeader(ItemList item) {

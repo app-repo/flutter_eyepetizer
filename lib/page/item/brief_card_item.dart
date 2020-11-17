@@ -18,20 +18,17 @@ class BriefCardItem extends StatelessWidget {
       padding: EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(3.0),
-            child: Hero(
-              child: CachedNetworkImage(
-                fadeInDuration: Duration.zero,
-                imageUrl: icon.replaceAll(
-                    "quality/60", "quality/60/thumbnail/!200x200"),
-                height: 70,
-                width: 70,
-                fit: BoxFit.cover,
-              ),
-              tag: icon,
-            ),
-          ),
+          Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3.0),
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: CachedNetworkImageProvider(
+                        icon.replaceAll(
+                            "quality/60/format/jpg", "quality/40/format/webp/thumbnail/!200x200"),
+                      )))),
           SizedBox(
             width: 10,
           ),

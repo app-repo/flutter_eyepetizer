@@ -29,20 +29,19 @@ class FollowCardVideoItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(6), topRight: Radius.circular(6)),
-                child: Hero(
-                  child: CachedNetworkImage(
-                    imageUrl: backgroundImageUrl.replaceAll(
-                        "quality/60", "quality/10!"),
-                    width: double.maxFinite,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
-                  tag: backgroundImageUrl,
-                ),
-              ),
+              Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(6),
+                          topRight: Radius.circular(6)),
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: CachedNetworkImageProvider(
+                            backgroundImageUrl.replaceAll(
+                              "quality/60/format/jpg",
+                              "quality/20!/format/webp",),
+                          )))),
               Positioned(
                 bottom: 10,
                 right: 10,

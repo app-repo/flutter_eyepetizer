@@ -52,7 +52,6 @@ class MyApp extends StatelessWidget {
         enableBallisticLoad: true,
         child: MaterialApp(
             title: '开眼',
-            debugShowCheckedModeBanner: false,
             onGenerateRoute: Application.router.generator,
             theme: ThemeData(
               visualDensity: VisualDensity.adaptivePlatformDensity,

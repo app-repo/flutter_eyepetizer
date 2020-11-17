@@ -26,14 +26,15 @@ class ItemCollectionItem extends StatelessWidget {
               children: [
                 ConstrainedBox(
                   constraints: BoxConstraints.expand(),
-                  child: ClipRRect(
-                    child: CachedNetworkImage(
-                      imageUrl: data.itemList[index].data.bgPicture
-                          .replaceAll("quality/60", "quality/10!"),
-                      fit: BoxFit.fill,
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: CachedNetworkImageProvider(
+                                data.itemList[index].data.bgPicture
+                                    .replaceAll("quality/60", "quality/10!"),
+                              )))),
                 ),
                 Container(
                   child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_openeye/page/home/attention_page.dart';
 import 'package:flutter_openeye/page/home/daily_page.dart';
 import 'package:flutter_openeye/page/home/find_page.dart';
 import 'package:flutter_openeye/page/home/recommend_page.dart';
@@ -14,14 +15,14 @@ class HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController _controller;
 
-  List<String> tabs = ["发现", "推荐", "日报"];
+  List<String> tabs = ["发现", "推荐", "关注"];
   List<Widget> pages = List();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    pages..add(FindPage())..add(RecommendPage())..add(DailyPage());
+    pages..add(FindPage())..add(RecommendPage())..add(AttentionPage());
     _controller =
         TabController(vsync: this, initialIndex: 0, length: tabs.length);
   }

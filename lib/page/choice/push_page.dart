@@ -2,10 +2,11 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/message_entity.dart';
-import 'package:flutter_openeye/page/notification/message_item.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:flutter_openeye/util/map_util.dart';
 import 'package:flutter_openeye/util/time_util.dart';
+
+import 'message_item.dart';
 
 class PushPage extends StatefulWidget {
   @override
@@ -74,19 +75,11 @@ class PushPageState extends State<PushPage> with AutomaticKeepAliveClientMixin {
           onLoading: () {
             onRequest(isRefresh: false);
           },
-          child: ListView.separated(
+          child: ListView.builder(
             itemCount: itemList.length,
+            itemExtent:85,
             itemBuilder: (c, i) {
               return buildItem(c, i);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.only(left: 60, right: 12),
-                child: Divider(
-                  height: 1,
-                  color: Colors.grey,
-                ),
-              );
             },
           ),
         ),
@@ -97,7 +90,7 @@ class PushPageState extends State<PushPage> with AutomaticKeepAliveClientMixin {
   Widget buildItem(BuildContext context, int pos) {
     Message msg = itemList[pos];
     return MessageItemWidget(
-        title: msg.title, imgUrl: "", content: msg.content, date: msg.date);
+        title: msg.title, imgUrl: "", content: msg.content, date: msg.date, actionUrl: '',);
   }
 
   @override

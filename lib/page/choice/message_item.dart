@@ -8,14 +8,15 @@ class MessageItemWidget extends StatefulWidget {
   String imgUrl;
   String content;
   int date;
-  bool isFix = false;
+  String actionUrl;
 
-  MessageItemWidget(
-      {@required this.title,
-      @required this.imgUrl,
-      @required this.content,
-      @required this.date,
-      this.isFix});
+  MessageItemWidget({
+    @required this.title,
+    @required this.imgUrl,
+    @required this.content,
+    @required this.date,
+    @required this.actionUrl,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -24,9 +25,11 @@ class MessageItemWidget extends StatefulWidget {
   }
 }
 
-class MessageItemWidgetState extends State<MessageItemWidget> {
+class MessageItemWidgetState extends State<MessageItemWidget>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       padding: EdgeInsets.only(left: 12, right: 12, top: 10),
       child: Row(
@@ -50,11 +53,10 @@ class MessageItemWidgetState extends State<MessageItemWidget> {
           ),
           Expanded(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  alignment: Alignment.centerLeft,
                   child: Text(
                     widget.title,
                     maxLines: 1,
@@ -65,11 +67,7 @@ class MessageItemWidgetState extends State<MessageItemWidget> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Container(
-                  alignment: Alignment.centerLeft,
                   child: Text(
                     TimeUtil.getFriendlyTimeSpanByNow(widget.date),
                     maxLines: 1,
@@ -77,26 +75,22 @@ class MessageItemWidgetState extends State<MessageItemWidget> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Container(
                   child: Text(
                     widget.content,
-                    maxLines: 2,
+                    maxLines: 1,
                     style: TextStyle(
                       fontSize: 13,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  alignment: Alignment.centerLeft,
                 ),
-                SizedBox(
-                  height: 5,
-                )
               ],
             ),
             flex: 1,
+          ),
+          SizedBox(
+            width: 10,
           ),
           Container(
             child: Image.asset(
@@ -104,11 +98,14 @@ class MessageItemWidgetState extends State<MessageItemWidget> {
               width: 20,
               height: 20,
             ),
-            height: 80,
             alignment: Alignment.center,
           )
         ],
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

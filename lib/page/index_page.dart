@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_openeye/page/community/community_page.dart';
+import 'package:flutter_openeye/page/community/rank_page.dart';
 import 'package:flutter_openeye/page/home/home_page.dart';
 import 'package:flutter_openeye/page/mine/mine_page.dart';
-import 'package:flutter_openeye/page/notification/notification_page.dart';
 import 'package:flutter_openeye/public.dart';
+
+import 'choice/choiceness_page.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -19,24 +21,24 @@ class IndexPageState extends State<IndexPage>
     with AutomaticKeepAliveClientMixin {
   int _currentIndex;
 
-  List titles = ["首页", "社区", "通知", "我的"];
+  List titles = ["首页", "精选", "排行", "我的"];
   List<Widget> pages = [
     HomePage(),
-    CommunityPage(),
-    NotificationPage(),
+    ChoicenessPage(),
+    RankPage(),
     MinePage()
   ];
 
   List normalIcons = [
     "images/ic_tab_strip_icon_feed.png",
-    "images/ic_tab_strip_icon_follow.png",
     "images/ic_tab_strip_icon_category.png",
+    "images/ic_tab_strip_icon_follow.png",
     "images/ic_tab_strip_icon_profile.png"
   ];
   List selectedIcons = [
     "images/ic_tab_strip_icon_feed_selected.png",
-    "images/ic_tab_strip_icon_follow_selected.png",
     "images/ic_tab_strip_icon_category_selected.png",
+    "images/ic_tab_strip_icon_follow_selected.png",
     "images/ic_tab_strip_icon_profile_selected.png"
   ];
 
@@ -91,8 +93,7 @@ class IndexPageState extends State<IndexPage>
             children: pages,
           ),
         ),
-        value: SystemUiOverlayStyle.dark
-    );
+        value: SystemUiOverlayStyle.dark);
   }
 
   void initNavigationItem() {

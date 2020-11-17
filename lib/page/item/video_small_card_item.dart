@@ -31,7 +31,8 @@ class VideoSmallCardItem extends StatelessWidget {
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
                     imageUrl: imgUrl.replaceAll(
-                        "quality/60", "quality/60!/thumbnail/!170x100"),
+                      "quality/60/format/jpg",
+                      "quality/20!/format/webp",),
                     height: 100,
                     width: 170,
                   ),

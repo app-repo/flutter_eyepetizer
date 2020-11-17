@@ -51,25 +51,18 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
       return Scaffold(
           body: RefreshIndicator(
         onRefresh: _onRequest,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: _itemList.map((e) => buildItem(e)).toList()
-              ..add(Container(
-                height: 50,
-                alignment: Alignment.center,
-                child: Text(
-                  "-The End-",
-                  style: TextStyle(
-                      fontSize: 18, color: Colors.black, fontFamily: "Lobster"),
-                ),
-              )),
-          ),
+        child: ListView.builder(
+          itemCount: _itemList.length,
+          itemBuilder: (c, i) => buildItem(c, i),
         ),
       ));
   }
 
-  Widget buildItem(ItemList item) {
+  Widget buildItem(
+    BuildContext c,
+    int pos,
+  ) {
+    var item = _itemList[pos];
     var type = item.type;
     if (type == 'videoSmallCard') {
       return VideoSmallCardItem(

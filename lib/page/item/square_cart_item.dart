@@ -33,15 +33,16 @@ class SquareCardItem extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        ClipRRect(
-                          child: Hero(
-                            child: CachedNetworkImage(
-                              imageUrl: data.itemList[index].data.image,
-                              fit: BoxFit.fill,
-                            ),
-                            tag: data.itemList[index].data.image,
-                          ),
-                          borderRadius: BorderRadius.circular(6),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: CachedNetworkImageProvider(data
+                                      .itemList[index].data.image
+                                      .replaceAll(
+                                    "quality/60/format/jpg",
+                                    "quality/20!/format/webp",)))),
                         ),
                         Text(
                           data.itemList[index].data.title,

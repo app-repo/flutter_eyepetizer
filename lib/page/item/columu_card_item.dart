@@ -35,18 +35,18 @@ class ColumnCardItem extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         ConstrainedBox(
-                          constraints: BoxConstraints.expand(),
-                          child: ClipRRect(
-                            child: Hero(
-                              child: CachedNetworkImage(
-                                imageUrl: data.itemList[index].data.image,
-                                fit: BoxFit.fill,
-                              ),
-                              tag: data.itemList[index].data.image,
-                            ),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                        ),
+                            constraints: BoxConstraints.expand(),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: CachedNetworkImageProvider(data
+                                          .itemList[index].data.image
+                                          .replaceAll(
+                                        "quality/60/format/jpg",
+                                        "quality/20!/format/webp",)))),
+                            )),
                         Container(
                           child: Text(
                             data.itemList[index].data.title,

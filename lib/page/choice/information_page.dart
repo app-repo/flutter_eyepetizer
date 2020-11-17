@@ -1,24 +1,23 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_openeye/entity/private_message_entity.dart';
-import 'package:flutter_openeye/http/constant.dart';
-import 'package:flutter_openeye/http/http_manager.dart';
-import 'package:flutter_openeye/page/notification/message_item.dart';
-import 'package:flutter_openeye/public.dart';
+import 'package:flutter_openeye/entity/infomation_entity.dart';
+import 'package:flutter_openeye/page/item/information_card_item.dart';
+import 'package:flutter_openeye/page/item/text_card_item.dart';
 
-class MessagePage extends StatefulWidget {
+import '../../public.dart';
+
+///全部资讯
+class InformationPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => MessagePageState();
+  State<StatefulWidget> createState() => InformationPageState();
 }
 
-class MessagePageState extends State<MessagePage>
+class InformationPageState extends State<InformationPage>
     with AutomaticKeepAliveClientMixin {
   RefreshController _controller = RefreshController(initialRefresh: false);
 
   bool isLoading = true;
 
-  List<Item> itemList = List();
+  List<ItemList> itemList = List();
 
   String _nextUrl = "";
 
@@ -31,12 +30,12 @@ class MessagePageState extends State<MessagePage>
   void onRequest({bool isRefresh = true}) async {
     var map;
     if (isRefresh) {
-      map = await HttpManager.instance.get(Constant.PRIVATE_MESSAGE);
+      map = await HttpManager.instance.get(Constant.INFORMATION_LIST);
     } else {
-      map = await HttpManager.instance.get(Constant.PRIVATE_MESSAGE,
+      map = await HttpManager.instance.get(Constant.INFORMATION_LIST,
           parameters: MapUtil.urlToMap(_nextUrl));
     }
-    PrivateMessageEntity entity = PrivateMessageEntity.fromJson(map);
+    InformationEntity entity = InformationEntity.fromJson(map);
     _nextUrl = entity.nextPageUrl ?? "";
     isLoading = false;
     if (isRefresh) {
@@ -75,18 +74,9 @@ class MessagePageState extends State<MessagePage>
           onLoading: () {
             onRequest(isRefresh: false);
           },
-          child: ListView.separated(
+          child: ListView.builder(
             itemCount: itemList.length,
             itemBuilder: (c, i) => buildItem(c, i),
-            separatorBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.only(left: 60, right: 12),
-                child: Divider(
-                  height: 1,
-                  color: Colors.grey,
-                ),
-              );
-            },
           ),
         ),
       );
@@ -96,11 +86,19 @@ class MessagePageState extends State<MessagePage>
   bool get wantKeepAlive => true;
 
   Widget buildItem(BuildContext c, int p) {
-    Item item = itemList[p];
-    return MessageItemWidget(
-        title: item.data.user.nickname,
-        imgUrl: item.data.user.avatar,
-        content: item.data.content,
-        date: item.data.lastTime);
-  }
-}
+    var item = itemList[p];
+    var type = item.type;
+    switch (type) {
+      case 'textCard':
+        return TextCardItem(
+          title: item.data.text,
+          rightTitle: "",
+          actionUrl: "",
+        );
+      case 'informationCard':
+        return InformationCardItem(
+            item.data.titleList, item.data.backgroundImage);
+      default:
+        return Visibility(child: Container(), visible: false,);
+    }
+  }}

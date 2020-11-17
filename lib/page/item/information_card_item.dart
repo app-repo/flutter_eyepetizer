@@ -14,19 +14,16 @@ class InformationCardItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-            child: Hero(
-              child: CachedNetworkImage(
-                imageUrl: imgUrl.replaceAll(
-                    "quality/60", "quality/10!"),
-                width: double.maxFinite,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-              tag: imgUrl,
-            ),
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: CachedNetworkImageProvider(
+                      imgUrl.replaceAll("quality/60", "quality/10!"),
+                    ))),
           ),
           Container(
             padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),

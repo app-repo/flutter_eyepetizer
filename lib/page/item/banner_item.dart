@@ -11,17 +11,14 @@ class BannerItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
       height: 200,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: Hero(
-          child: CachedNetworkImage(
-            imageUrl: image.replaceAll(
-                "60/format/jpg", "10/format/webp"),
-            fit: BoxFit.cover,
-          ),
-          tag: image,
-        ),
-      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.0),
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: CachedNetworkImageProvider(
+                image.replaceAll("quality/60/format/jpg",
+                  "quality/20!/format/webp",),
+              ))),
     );
   }
 }
