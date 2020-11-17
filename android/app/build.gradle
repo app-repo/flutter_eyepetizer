@@ -40,6 +40,9 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+//        ndk {
+//            abiFilters "armeabi-v7a","x86" // 只兼容armeabi-v7a架构
+//        }
     }
 
     signingConfigs {

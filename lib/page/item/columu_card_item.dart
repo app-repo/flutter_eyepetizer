@@ -13,7 +13,8 @@ class ColumnCardItem extends StatelessWidget {
     var data = _item.data;
     var ratio = (205 / 2) / ((MediaQuery.of(context).size.width - 24 - 5) / 2);
     return Container(
-      height: 280,
+      color: Colors.white,
+      height: 260,
       child: Column(
         children: [
           TextCardItem(
@@ -23,49 +24,48 @@ class ColumnCardItem extends StatelessWidget {
           ),
           Container(
             height: 210,
+            color: Colors.white,
             margin: EdgeInsets.only(left: 12, right: 12),
-            child: Expanded(
-              flex: 1,
-              child: GridView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: data.itemList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ConstrainedBox(
-                            constraints: BoxConstraints.expand(),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: CachedNetworkImageProvider(data
-                                          .itemList[index].data.image
-                                          .replaceAll(
-                                        "quality/60/format/jpg",
-                                        "quality/20!/format/webp",)))),
-                            )),
-                        Container(
-                          child: Text(
-                            data.itemList[index].data.title,
-                            style: TextStyle(color: Colors.white),
-                            maxLines: 1,
-                          ),
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                        )
-                      ],
-                    ),
-                  );
-                },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                    childAspectRatio: ratio),
-              ),
-            ),
+            child: GridView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: data.itemList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  color: Colors.white,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      ConstrainedBox(
+                          constraints: BoxConstraints.expand(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6.0),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: CachedNetworkImageProvider(data
+                                        .itemList[index].data.image
+                                        .replaceAll(
+                                      "quality/60/format/jpg",
+                                      "quality/20!/format/webp",)))),
+                          )),
+                      Container(
+                        child: Text(
+                          data.itemList[index].data.title,
+                          style: TextStyle(color: Colors.white),
+                          maxLines: 1,
+                        ),
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                      )
+                    ],
+                  ),
+                );
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: ratio),
+            )
           )
         ],
       ),

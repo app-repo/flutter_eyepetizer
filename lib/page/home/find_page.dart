@@ -49,13 +49,14 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
       );
     } else
       return Scaffold(
+          backgroundColor: Colors.white,
           body: RefreshIndicator(
-        onRefresh: _onRequest,
-        child: ListView.builder(
-          itemCount: _itemList.length,
-          itemBuilder: (c, i) => buildItem(c, i),
-        ),
-      ));
+            onRefresh: _onRequest,
+            child: ListView.builder(
+              itemCount: _itemList.length,
+              itemBuilder: (c, i) => buildItem(c, i),
+            ),
+          ));
   }
 
   Widget buildItem(
@@ -71,11 +72,8 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
           item.data.category + " / " + item.data.author.name,
           item.data.duration);
     } else if (type == 'horizontalScrollCard') {
-      {
-        List<String> urls =
-            item.data.itemList.map((e) => e.data.image).toList();
-        return ScrollCardItem(urls);
-      }
+      List<String> urls = item.data.itemList.map((e) => e.data.image).toList();
+      return ScrollCardItem(urls);
     } else if (type == 'specialSquareCardCollection') {
       return SquareCardItem(item);
     } else if (type == 'columnCardList') {

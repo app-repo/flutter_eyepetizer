@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../public.dart';
 
-class PicFollowCardItemPage extends StatefulWidget {
+class PicFollowCardItemPage extends StatelessWidget {
   String icon;
   String issuerName;
   int releaseTime;
@@ -25,11 +25,6 @@ class PicFollowCardItemPage extends StatefulWidget {
       this.urls);
 
   @override
-  State<StatefulWidget> createState() => PicFollowCardPageState();
-}
-
-class PicFollowCardPageState extends State<PicFollowCardItemPage> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 12, right: 12),
@@ -46,7 +41,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                   height: 6,
                 ),
                 Text(
-                  widget.description.trim(),
+                  description.trim(),
                   maxLines: 3,
                   style: TextStyle(),
                   strutStyle: StrutStyle(leading: 0.3),
@@ -66,15 +61,15 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
   }
 
   Widget buildPic() {
-    print(widget.urls[0]);
-    int len = widget.urls.length;
+    print(urls[0]);
+    int len = urls.length;
     if (len == 1) {
       return Container(
         height: 180,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.0),
             image: DecorationImage(
-                image: CachedNetworkImageProvider(widget.urls[0] +
+                image: CachedNetworkImageProvider(urls[0] +
                     "?imageMogr2/quality/40!/format/webp/thumbnail/!720x"),
                 fit: BoxFit.fill)),
       );
@@ -91,7 +86,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                         topLeft: Radius.circular(6),
                         bottomLeft: Radius.circular(6)),
                     image: DecorationImage(
-                        image: CachedNetworkImageProvider(widget.urls[0] +
+                        image: CachedNetworkImageProvider(urls[0] +
                             "?imageMogr2/quality/40!/format/webp/thumbnail/!720x"),
                         fit: BoxFit.cover)),
               ),
@@ -107,7 +102,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                         topRight: Radius.circular(6),
                         bottomRight: Radius.circular(6)),
                     image: DecorationImage(
-                        image: CachedNetworkImageProvider(widget.urls[1] +
+                        image: CachedNetworkImageProvider(urls[1] +
                             "?imageMogr2/quality/40!/format/webp/thumbnail/!720x"),
                         fit: BoxFit.cover)),
               ),
@@ -128,7 +123,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                         topLeft: Radius.circular(6),
                         bottomLeft: Radius.circular(6)),
                     image: DecorationImage(
-                        image: CachedNetworkImageProvider(widget.urls[0] +
+                        image: CachedNetworkImageProvider(urls[0] +
                             "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                         fit: BoxFit.cover)),
               ),
@@ -147,8 +142,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                               topRight: Radius.circular(6),
                             ),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[1] +
+                                image: CachedNetworkImageProvider(urls[1] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -163,8 +157,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                             borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(6)),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[2] +
+                                image: CachedNetworkImageProvider(urls[2] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -191,8 +184,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                               topLeft: Radius.circular(6),
                             ),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[0] +
+                                image: CachedNetworkImageProvider(urls[0] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -207,8 +199,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(6)),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[1] +
+                                image: CachedNetworkImageProvider(urls[1] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -230,8 +221,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                               topRight: Radius.circular(6),
                             ),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[2] +
+                                image: CachedNetworkImageProvider(urls[2] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -246,8 +236,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                             borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(6)),
                             image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget
-                                        .urls[3] +
+                                image: CachedNetworkImageProvider(urls[3] +
                                     "?imageMogr2/quality/40!/format/webp/thumbnail/!360x"),
                                 fit: BoxFit.cover)),
                       ),
@@ -274,7 +263,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
             child: CircleAvatar(
               backgroundColor: Colors.white,
               backgroundImage: CachedNetworkImageProvider(
-                widget.icon,
+                icon,
               ),
             ),
           ),
@@ -289,7 +278,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
               children: [
                 Container(
                   child: Text(
-                    widget.issuerName,
+                    issuerName,
                     maxLines: 1,
                     style: TextStyle(color: Colors.black, fontSize: 15),
                   ),
@@ -298,13 +287,12 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                   child: Text.rich(
                     TextSpan(children: [
                       TextSpan(
-                        text: TimeUtil.getFriendlyTimeSpanByNow(
-                                widget.releaseTime) +
+                        text: TimeUtil.getFriendlyTimeSpanByNow(releaseTime) +
                             " 发布: ",
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       TextSpan(
-                        text: widget.title,
+                        text: title,
                         style: TextStyle(
                             fontSize: 12,
                             color: Colors.black,
@@ -341,7 +329,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                   width: 5,
                 ),
                 Text(
-                  widget.collectionCount.toString(),
+                  collectionCount.toString(),
                 ),
               ],
             ),
@@ -359,7 +347,7 @@ class PicFollowCardPageState extends State<PicFollowCardItemPage> {
                 SizedBox(
                   width: 5,
                 ),
-                Text(widget.replyCount.toString()),
+                Text(replyCount.toString()),
               ],
             ),
           ),

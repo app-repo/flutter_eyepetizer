@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:sprintf/sprintf.dart';
 
+
 class VideoSmallCardItem extends StatelessWidget {
   String imgUrl;
   String title;

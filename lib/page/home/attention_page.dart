@@ -106,6 +106,6 @@ class AttentionPageState extends State<AttentionPage>
   }
 
   @override
-  // TODO: implement wantKeepAlive
+
   bool get wantKeepAlive => true;
 }

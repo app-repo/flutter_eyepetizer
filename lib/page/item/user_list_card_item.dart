@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openeye/entity/attention_entity.dart';
 import 'package:flutter_openeye/public.dart';
 
-class UserListCardPage extends StatefulWidget {
+class UserListCardPage extends StatelessWidget {
   List<UserList> _list;
 
   UserListCardPage(this._list);
 
-  @override
-  State<StatefulWidget> createState() => UserListCardPageState();
-}
-
-class UserListCardPageState extends State<UserListCardPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,18 +21,18 @@ class UserListCardPageState extends State<UserListCardPage> {
             ),
             child: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                var userList = widget._list[index];
+                var userList = _list[index];
                 return Container(
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     backgroundImage:
-                        CachedNetworkImageProvider(userList.avatar),
+                    CachedNetworkImageProvider(userList.avatar),
                   ),
                   margin: EdgeInsets.only(right: 10),
                 );
               },
               itemExtent: 50,
-              itemCount: widget._list.length,
+              itemCount:_list.length,
               scrollDirection: Axis.horizontal,
             ),
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../public.dart';
 
-class AutoPlayFollowCardPage extends StatefulWidget {
+class AutoPlayFollowCardPage extends StatelessWidget {
   String icon;
   String issueName;
   String replyCount;
@@ -23,11 +23,7 @@ class AutoPlayFollowCardPage extends StatefulWidget {
       this.releaseTime,
       this.issueName);
 
-  @override
-  State<StatefulWidget> createState() => AutoPlayFollowCardPageState();
-}
 
-class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,7 +41,7 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
                   height: 6,
                 ),
                 Text(
-                  widget.description,
+                  description,
                   maxLines: 3,
                   style: TextStyle(),
                   strutStyle: StrutStyle(leading: 0.3),
@@ -61,9 +57,9 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6.0),
                           image: DecorationImage(
-                              image: CachedNetworkImageProvider(widget.feed
+                              image: CachedNetworkImageProvider(feed
                                   .replaceAll(
-                                      "60/format/jpg", "10/format/webp")),
+                                  "60/format/jpg", "10/format/webp")),
                               fit: BoxFit.cover)),
                     ),
                     Image.asset(
@@ -95,7 +91,7 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
             child: CircleAvatar(
               backgroundColor: Colors.white,
               backgroundImage: CachedNetworkImageProvider(
-                widget.icon,
+                icon,
               ),
             ),
           ),
@@ -110,7 +106,7 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
               children: [
                 Container(
                   child: Text(
-                    widget.issueName,
+                    issueName,
                     maxLines: 1,
                     style: TextStyle(color: Colors.black, fontSize: 15),
                   ),
@@ -120,12 +116,12 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
                     TextSpan(children: [
                       TextSpan(
                         text: TimeUtil.getFriendlyTimeSpanByNow(
-                                widget.releaseTime) +
+                            releaseTime) +
                             " 发布: ",
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       TextSpan(
-                        text: widget.title,
+                        text: title,
                         style: TextStyle(
                             fontSize: 12,
                             color: Colors.black,
@@ -162,7 +158,7 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
                   width: 5,
                 ),
                 Text(
-                  widget.collectionCount.toString(),
+                  collectionCount.toString(),
                 ),
               ],
             ),
@@ -180,7 +176,7 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
                 SizedBox(
                   width: 5,
                 ),
-                Text(widget.replyCount.toString()),
+                Text(replyCount.toString()),
               ],
             ),
           ),
@@ -211,3 +207,4 @@ class AutoPlayFollowCardPageState extends State<AutoPlayFollowCardPage> {
     );
   }
 }
+
