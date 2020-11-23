@@ -6,6 +6,7 @@ import 'package:flutter_openeye/page/home/light_topic_detail_page.dart';
 import 'package:flutter_openeye/page/home/rank_page.dart';
 import 'package:flutter_openeye/page/home/special_topic_page.dart';
 import 'package:flutter_openeye/page/home/tag_video_page.dart';
+import 'package:flutter_openeye/page/home/video_detail_page.dart';
 import 'package:flutter_openeye/page/login_page.dart';
 import 'package:flutter_openeye/public.dart';
 
@@ -47,4 +48,13 @@ var tagVideoHandler =
   var id = params['id']?.first;
   var image = params['image']?.first;
   return TagVideoPage(title, id, image);
+});
+
+var videoDetailHandler =
+    Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+
+  var id = params['id']?.first;
+  var vUrl = params['vUrl']?.first;
+
+  return VideoDetailPage(id,vUrl);
 });

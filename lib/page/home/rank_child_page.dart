@@ -33,7 +33,7 @@ class RankChildPageState extends State<RankChildPage>
   Future<void> _onRequest({isRefresh = true}) async {
     var resultMap;
     if (isRefresh) {
-      var paramMap = Map<String,dynamic>();
+      var paramMap = Map<String, dynamic>();
       paramMap["strategy"] = widget.type == 0
           ? "weekly"
           : widget.type == 1
@@ -100,10 +100,13 @@ class RankChildPageState extends State<RankChildPage>
   Widget buildItem(BuildContext c, int pos) {
     var item = _itemList[pos];
     return FollowCardVideoItem(
-        item.data.content.data.cover.feed,
-        item.data.content.data.duration,
-        item.data.header.icon,
-        item.data.header.title,
-        item.data.header.description);
+      item.data.content.data.cover.feed,
+      item.data.content.data.duration,
+      item.data.header.icon,
+      item.data.header.title,
+      item.data.header.description,
+      id: item.data.content.data.id.toString(),
+      vUrl: item.data.content.data.playUrl,
+    );
   }
 }

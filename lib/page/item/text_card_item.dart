@@ -7,7 +7,13 @@ class TextCardItem extends StatelessWidget {
 
   String actionUrl;
 
-  TextCardItem({@required this.title, this.rightTitle, this.actionUrl});
+  bool isLight;
+
+  TextCardItem(
+      {@required this.title,
+      this.rightTitle,
+      this.actionUrl,
+      this.isLight = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,9 @@ class TextCardItem extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 22, fontWeight: FontWeight.w900, color: Colors.black),
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                color: isLight ? Colors.white : Colors.black),
           ),
           rightTitle.isEmpty
               ? Container()

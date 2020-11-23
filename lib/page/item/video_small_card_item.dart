@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openeye/public.dart';
 import 'package:sprintf/sprintf.dart';
 
-
 class VideoSmallCardItem extends StatelessWidget {
   String imgUrl;
   String title;
   String dec;
   int duration;
+  bool isZero = false;
 
-  VideoSmallCardItem(this.imgUrl, this.title, this.dec, this.duration);
+  VideoSmallCardItem(
+      this.imgUrl, this.title, this.dec, this.duration, {this.isZero});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class VideoSmallCardItem extends StatelessWidget {
     }
     return Container(
       height: 115,
-      padding: EdgeInsets.only(left: 12, right: 12),
+      padding: isZero ? EdgeInsets.zero : EdgeInsets.only(left: 12, right: 12),
       child: Row(
         children: [
           Stack(
@@ -33,7 +34,8 @@ class VideoSmallCardItem extends StatelessWidget {
                     fit: BoxFit.cover,
                     imageUrl: imgUrl.replaceAll(
                       "quality/60/format/jpg",
-                      "quality/20!/format/webp",),
+                      "quality/20!/format/webp",
+                    ),
                     height: 100,
                     width: 170,
                   ),

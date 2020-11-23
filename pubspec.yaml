@@ -41,6 +41,9 @@ dependencies:
   sprintf: ^4.0.0
   flutter_staggered_grid_view: ^0.3.2
   flutter_swiper: ^1.1.6
+  video_player: ^1.0.1
+  open_iconic_flutter: ^0.3.0
+  fijkplayer: ^0.8.7
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +93,12 @@ flutter:
     - images/ic_action_collect_grey_without_padding.png
     - images/ic_action_comment.png
     - images/ic_action_like_heart_black.png
+    - images/ic_action_reply_more.png
+    - images/icon_reply_more_white.png
+    - images/icon_share_white.png
+    - images/icon_heart_white.png
+    - images/icon_down_white.png
+    - images/icon_collect_white.png
 
 
 

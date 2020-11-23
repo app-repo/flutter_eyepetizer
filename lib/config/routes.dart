@@ -10,6 +10,7 @@ class Routes {
   static String specialTopicPage = "/specialTopicPage";
   static String lightTopicDetailPage = "/lightTopicDetailPage";
   static String tagVideoPage = "/tagVideoPage";
+  static String videoDetailPage = "/videoDetailPage";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -25,6 +26,7 @@ class Routes {
     router.define(specialTopicPage, handler: specialTopicHandler);
     router.define(lightTopicDetailPage, handler: lightTopicDetailHandler);
     router.define(tagVideoPage, handler: tagVideoHandler);
+    router.define(videoDetailPage, handler: videoDetailHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配

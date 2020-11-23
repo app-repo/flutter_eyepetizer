@@ -7,6 +7,7 @@ import 'package:flutter_openeye/page/community/rank_page.dart';
 import 'package:flutter_openeye/page/home/home_page.dart';
 import 'package:flutter_openeye/page/mine/mine_page.dart';
 import 'package:flutter_openeye/public.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'choice/choiceness_page.dart';
 
@@ -22,12 +23,7 @@ class IndexPageState extends State<IndexPage>
   int _currentIndex;
 
   List titles = ["首页", "精选", "排行", "我的"];
-  List<Widget> pages = [
-    HomePage(),
-    ChoicenessPage(),
-    RankPage(),
-    MinePage()
-  ];
+  List<Widget> pages = [HomePage(), ChoicenessPage(), RankPage(), MinePage()];
 
   List normalIcons = [
     "images/ic_tab_strip_icon_feed.png",
@@ -68,32 +64,56 @@ class IndexPageState extends State<IndexPage>
     );
   }
 
+  DateTime lastTime;
+
+  Future<bool> _onWillPop() async {
+    if (lastTime == null ||
+        DateTime.now().difference(lastTime) > Duration(seconds: 2)) {
+      lastTime = DateTime.now();
+      Fluttertoast.showToast(
+          msg: "再按一次退出",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black26,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      return false;
+    } else {
+      SystemNavigator.pop();
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     itemWidth = (MediaQuery.of(context).size.width / 5);
     initNavigationItem();
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: (pos) async {
-              this.setState(() {
-                _currentIndex = pos;
-              });
-            },
-            currentIndex: _currentIndex,
-            selectedFontSize: 12.0,
-            unselectedFontSize: 12.0,
-            items: items,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              onTap: (pos) async {
+                this.setState(() {
+                  _currentIndex = pos;
+                });
+              },
+              currentIndex: _currentIndex,
+              selectedFontSize: 12.0,
+              unselectedFontSize: 12.0,
+              items: items,
+            ),
+            body: IndexedStack(
+              index: _currentIndex,
+              children: pages,
+            ),
           ),
-          body: IndexedStack(
-            index: _currentIndex,
-            children: pages,
-          ),
-        ),
-        value: SystemUiOverlayStyle.dark);
+          value: SystemUiOverlayStyle.dark),
+    );
   }
 
   void initNavigationItem() {
