@@ -31,6 +31,7 @@ class FollowCardVideoItem extends StatelessWidget {
         var map = Map<String,dynamic>();
         map['id'] = id;
         map['vUrl'] = vUrl;
+        map['bgUrl'] = backgroundImageUrl;
         Routes.navigateTo(context, Routes.videoDetailPage, params: map);
       },
       child: Container(

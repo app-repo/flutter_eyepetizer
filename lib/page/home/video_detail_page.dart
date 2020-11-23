@@ -15,8 +15,9 @@ import '../../public.dart';
 class VideoDetailPage extends StatefulWidget {
   String _id;
   String vUrl;
+  String bgUrl;
 
-  VideoDetailPage(this._id, this.vUrl);
+  VideoDetailPage(this._id, this.vUrl,this.bgUrl);
 
   @override
   State<StatefulWidget> createState() => VideoDetailPageState();
@@ -63,7 +64,6 @@ class VideoDetailPageState extends State<VideoDetailPage>
       RelatedEntity.VideoRelatedEntity _relatedEntity =
           RelatedEntity.VideoRelatedEntity.fromJson(rMap);
       _relatedEntity.itemList.forEach((element) {
-        print("dddd+${element.type}");
         if (element.type == 'videoSmallCard') {
           _list.add(element);
         }
@@ -116,9 +116,7 @@ class VideoDetailPageState extends State<VideoDetailPage>
                 child: FijkView(
                   player: _player,
                   fit: FijkFit.fill,
-                  cover: CachedNetworkImageProvider(_detailEntity == null
-                      ? ""
-                      : _detailEntity.cover.feed
+                  cover: CachedNetworkImageProvider(widget.bgUrl
                           .replaceAll("60/format/jpg", "10/format/webp")),
                   panelBuilder: (FijkPlayer player, FijkData data,
                       BuildContext context, Size viewSize, Rect texturePos) {

@@ -236,7 +236,6 @@ class DataX {
   String privateMessageActionUrl;
   String url;
   List<String> urls;
-  int status;
   List<dynamic> playInfo;
   dynamic campaign;
   dynamic waterMarks;
@@ -285,8 +284,7 @@ class DataX {
       this.releaseTime, 
       this.privateMessageActionUrl, 
       this.url, 
-      this.urls, 
-      this.status, 
+      this.urls,
       this.playInfo, 
       this.campaign, 
       this.waterMarks, 
@@ -341,7 +339,7 @@ class DataX {
     privateMessageActionUrl = json["privateMessageActionUrl"];
     url = json["url"];
     urls = json["urls"] != null ? json["urls"].cast<String>() : [];
-    status = json["status"];
+
     campaign = json["campaign"];
     waterMarks = json["waterMarks"];
     ad = json["ad"];
@@ -401,7 +399,6 @@ class DataX {
     map["privateMessageActionUrl"] = privateMessageActionUrl;
     map["url"] = url;
     map["urls"] = urls;
-    map["status"] = status;
     if (playInfo != null) {
       map["playInfo"] = playInfo.map((v) => v.toJson()).toList();
     }

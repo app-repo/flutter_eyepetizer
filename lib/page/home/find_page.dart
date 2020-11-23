@@ -70,7 +70,7 @@ class FindPageState extends State<FindPage> with AutomaticKeepAliveClientMixin {
           item.data.cover.feed,
           item.data.title,
           item.data.category + " / " + item.data.author.name,
-          item.data.duration);
+          item.data.duration,isZero: false,);
     } else if (type == 'horizontalScrollCard') {
       List<String> urls = item.data.itemList.map((e) => e.data.image).toList();
       return ScrollCardItem(urls);

@@ -126,7 +126,7 @@ class RecommendPageState extends State<RecommendPage>
             item.data.cover.feed,
             item.data.title,
             item.data.category + " / " + item.data.author.name,
-            item.data.duration);
+            item.data.duration,isZero: false,);
         break;
       // case 'banner':
       //   return BannerItem(item.data.image);

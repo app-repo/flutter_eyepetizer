@@ -55,6 +55,7 @@ var videoDetailHandler =
 
   var id = params['id']?.first;
   var vUrl = params['vUrl']?.first;
+  var bgUrl = params['bgUrl']?.first;
 
-  return VideoDetailPage(id,vUrl);
+  return VideoDetailPage(id,vUrl,bgUrl);
 });

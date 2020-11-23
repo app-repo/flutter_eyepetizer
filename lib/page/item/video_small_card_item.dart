@@ -10,7 +10,7 @@ class VideoSmallCardItem extends StatelessWidget {
   bool isZero = false;
 
   VideoSmallCardItem(
-      this.imgUrl, this.title, this.dec, this.duration, {this.isZero});
+      this.imgUrl, this.title, this.dec, this.duration, {this.isZero = false});
 
   @override
   Widget build(BuildContext context) {
